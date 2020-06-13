@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+CHAT EN TIEMPO REAL
+
+Entorno en tiempo real (Socket.IO)
+                        - Engine.IO (WebSocket)
+                        - XHR (XMLHttpRequest)
+                        - Long-polling (peticion, servidor "cuelga")
+
+<input>, <textarea>     -> ingresar el mensaje
+<input>                 -> nombre de usuario
+<ul>, <ol>, <div>       -> lista de mensajes
+
+-->
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <label>
+          Nombre de usuario:<br />
+          <input placeholder="Nombre de usuario" v-model="usuario" />
+        </label>
+      </div>
+      <br />
+      <div>
+        <label>
+          Mensaje:<br />
+          <textarea cols="50" v-model="mensaje"></textarea>
+          <br />
+          <button @click="enviar">Enviar</button>
+        </label>
+      </div>
+      <br />
+      <div>
+        Historial:
+        <ul>
+          <li v-for="objeto in mensajes">
+            <b>{{ objeto.usuario }}</b>: {{ objeto.mensaje }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
